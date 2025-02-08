@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dream Interpreter</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Tell me about your dream</h1>
+  <div class="input-container">
+    <textarea id="dreamInput" placeholder="Type your dream here..."></textarea>
+    <button id="submitBtn">Interpret My Dream</button>
+  </div>
+  <div class="response" id="responseArea" style="display:none;"></div>
+
+  <script>
+    document.getElementById('submitBtn').addEventListener('click', async () => {
+  const dreamText = document.getElementById('dreamInput').value.trim();
+  if (!dreamText) {
+    alert("Please enter your dream.");
+    return;
+  }
+
+  // 加载效果
+  const responseArea = document.getElementById('responseArea');
+  responseArea.style.display = 'block';
+  responseArea.innerHTML = '<div class="response-bubble">⏳ Interpreting your dream...</div>';
+
+  try {
+    const response = await fetch('/api/interpret', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ dream: dreamText })
+    });
+
+    const data = await response.json();
+
+    // 让 AI 解释的回答有更好看的格式
+    responseArea.innerHTML = `
+      <div class="response-bubble">
+        <strong>🔮 Interpretation:</strong><br>
+        ${data.interpretation.replace(/\n/g, '<br>')}
+      </div>`;
+  } catch (error) {
+    responseArea.innerHTML = '<div class="response-bubble">⚠️ An error occurred. Please try again later.</div>';
+  }
+});
+
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+/* 🎨 🌌 全屏渐变弥散背景 */
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Poppins', 'Inter', 'Helvetica Neue', sans-serif;
+  color: white;
+  text-align: center;
+  background: linear-gradient(120deg, #9FF2FC, #CDB7F7, #8579EC);
+  background-size: 500% 500%;
+  animation: gradientBG 18s infinite alternate ease-in-out;
+}
+
+/* ✨ 渐变背景动画 */
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+
+/* 🌙 标题 - 增加光晕 */
+h1 {
+  font-size: 3rem;
+  font-weight: 600;
+  text-shadow: 0px 4px 20px rgba(255, 255, 255, 0.8);
+}
+
+/* 💎 半透明磨砂输入框 */
+.input-container {
+  width: 80%;
+  max-width: 600px;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 30px rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-radius: 20px;
+  padding: 20px;
+  text-align: left;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/* 🌟 输入框 */
+textarea {
+  width: 100%;
+  height: 100px;
+  border: none;
+  background: transparent;
+  color: white;
+  font-size: 1.2rem;
+  font-family: inherit;
+  outline: none;
+  resize: none;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+/* 💖 输入框 placeholder */
+textarea::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* 🎭 按钮 - 让它更高级 */
+button {
+  width: 100%;
+  margin-top: 15px;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.4);
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+button:hover {
+  background: rgba(255, 255, 255, 0.7);
+  transform: scale(1.05);
+}
+/* 🌙 AI 回答的聊天气泡 */
+.response-bubble {
+  max-width: 80%;
+  background: rgba(255, 255, 255, 0.2); /* 轻盈磨砂感 */
+  color: white;
+  padding: 15px 20px;
+  margin: 15px auto; /* 居中+增加上下间距 */
+  border-radius: 18px;
+  backdrop-filter: blur(20px); /* 让气泡有磨砂感 */
+  -webkit-backdrop-filter: blur(20px);
+  text-align: left;
+  box-shadow: 0px 6px 15px rgba(255, 255, 255, 0.3);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  display: inline-block;
+  text-align: left;
+}
+
+/* ✨ 让整体回答有更多间距，不要贴着上面 */
+#responseArea {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.response-bubble {
+  position: relative;
+}
+
+/* 🌙 让气泡有一个小箭头，像对话框 */
+.response-bubble::before {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 20px;
+  width: 20px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+.response-bubble {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInUp 0.4s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
